@@ -31,8 +31,8 @@
      <rect>
       <x>20</x>
       <y>10</y>
-      <width>651</width>
-      <height>541</height>
+      <width>691</width>
+      <height>461</height>
      </rect>
     </property>
     <property name="autoFillBackground">
@@ -47,8 +47,8 @@ border-radius: 5px;
    <widget class="QWidget" name="widgetPID" native="true">
     <property name="geometry">
      <rect>
-      <x>360</x>
-      <y>630</y>
+      <x>380</x>
+      <y>480</y>
       <width>321</width>
       <height>261</height>
      </rect>
@@ -65,8 +65,8 @@ border-radius: 5px;
    <widget class="QWidget" name="chartWidgetError" native="true">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>630</y>
+      <x>20</x>
+      <y>480</y>
       <width>341</width>
       <height>261</height>
      </rect>
@@ -83,8 +83,8 @@ border-radius: 5px;
    <widget class="QWidget" name="widgetWartoscSterowania" native="true">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>630</y>
+      <x>720</x>
+      <y>480</y>
       <width>321</width>
       <height>261</height>
      </rect>
@@ -378,7 +378,7 @@ border-radius: 5px;
      <x>0</x>
      <y>0</y>
      <width>1065</width>
-     <height>37</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

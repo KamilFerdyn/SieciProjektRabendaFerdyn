@@ -1,0 +1,10 @@
+debug/ModelARX.o
+debug/PetlaSprzezeniaZwrotnego.o
+debug/ProstyUAR.o
+debug/RegulatorPID.o
+debug/Testy_ARX.o
+debug/Testy_PID.o
+debug/Testy_UAR.o
+debug/main.o
+debug/mainwindow.o
+debug/moc_mainwindow.o
