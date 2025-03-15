@@ -193,6 +193,7 @@ public:
 
         lineEditA = new QLineEdit(groupBoxARX);
         lineEditA->setObjectName("lineEditA");
+        lineEditA->setEnabled(false);
 
         gridLayout_2->addWidget(lineEditA, 0, 1, 1, 1);
 
@@ -203,6 +204,7 @@ public:
 
         lineEditB = new QLineEdit(groupBoxARX);
         lineEditB->setObjectName("lineEditB");
+        lineEditB->setEnabled(false);
 
         gridLayout_2->addWidget(lineEditB, 0, 3, 1, 1);
 
@@ -213,6 +215,7 @@ public:
 
         spinBoxK = new QSpinBox(groupBoxARX);
         spinBoxK->setObjectName("spinBoxK");
+        spinBoxK->setEnabled(false);
         spinBoxK->setMinimum(1);
 
         gridLayout_2->addWidget(spinBoxK, 1, 2, 1, 2);
