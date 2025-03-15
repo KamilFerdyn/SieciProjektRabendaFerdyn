@@ -52,7 +52,9 @@ MainWindow::MainWindow(QWidget *parent)
     chart->createDefaultAxes();
 
     chart->axes(Qt::Vertical).first()->setRange(vChartMinRange, vChartMaxRange);
+    chart->axes(Qt::Vertical).first()->setTitleText("Wartosc");
     chart->axes(Qt::Horizontal).first()->setRange(0, withXAxis);
+    chart->axes(Qt::Horizontal).first()->setTitleText("Czas");
 
     chartView = new QChartView(chart, ui->chartWidget);
     chartView->setGeometry(ui->chartWidget->rect());
@@ -68,7 +70,9 @@ MainWindow::MainWindow(QWidget *parent)
     chartError->createDefaultAxes();
 
     chartError->axes(Qt::Vertical).first()->setRange(vChartErrorMinRange, vChartErrorMaxRange);
+    chartError->axes(Qt::Vertical).first()->setTitleText("Wartosc");
     chartError->axes(Qt::Horizontal).first()->setRange(0, withXAxis);
+    chartError->axes(Qt::Horizontal).first()->setTitleText("Czas");
 
     chartViewError = new QChartView(chartError, ui->chartWidgetError);
     chartViewError->setGeometry(ui->chartWidgetError->rect());
@@ -91,7 +95,9 @@ MainWindow::MainWindow(QWidget *parent)
     chartPID->createDefaultAxes();
 
     chartPID->axes(Qt::Vertical).first()->setRange(vChartPIDMinRange, vChartPIDMaxRange);
+    chartPID->axes(Qt::Vertical).first()->setTitleText("Wartosc");
     chartPID->axes(Qt::Horizontal).first()->setRange(0, withXAxis);
+    chartPID->axes(Qt::Horizontal).first()->setTitleText("Czas");
 
     chartPIDView = new QChartView(chartPID, ui->widgetPID);
     chartPIDView->setGeometry(ui->widgetPID->rect());
@@ -107,7 +113,9 @@ MainWindow::MainWindow(QWidget *parent)
     chartSterowanie->createDefaultAxes();
 
     chartSterowanie->axes(Qt::Vertical).first()->setRange(vChartSterowanieMinRange, vChartSterowanieMaxRange);
+    chartSterowanie->axes(Qt::Vertical).first()->setTitleText("Wartosc");
     chartSterowanie->axes(Qt::Horizontal).first()->setRange(0, withXAxis);
+    chartSterowanie->axes(Qt::Horizontal).first()->setTitleText("Czas");
 
     chartSterowanieView = new QChartView(chartSterowanie, ui->widgetWartoscSterowania);
     chartSterowanieView->setGeometry(ui->widgetWartoscSterowania->rect());

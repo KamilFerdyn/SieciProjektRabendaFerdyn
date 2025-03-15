@@ -75,6 +75,7 @@ public:
     QPushButton *pushButtonReset;
     QPushButton *pushButtonLoad;
     QPushButton *pushButtonSave;
+    QPushButton *pushButton;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -268,7 +269,7 @@ public:
 
         spinBoxInterval = new QSpinBox(layoutWidget);
         spinBoxInterval->setObjectName("spinBoxInterval");
-        spinBoxInterval->setMinimum(200);
+        spinBoxInterval->setMinimum(500);
         spinBoxInterval->setMaximum(2000);
 
         gridLayout_4->addWidget(spinBoxInterval, 0, 1, 1, 1);
@@ -314,6 +315,11 @@ public:
 
         gridLayout_5->addWidget(pushButtonSave, 1, 0, 1, 1);
 
+        pushButton = new QPushButton(layoutWidget);
+        pushButton->setObjectName("pushButton");
+
+        gridLayout_5->addWidget(pushButton, 2, 0, 1, 1);
+
 
         verticalLayout->addLayout(gridLayout_5);
 
@@ -358,6 +364,7 @@ public:
         pushButtonReset->setText(QCoreApplication::translate("MainWindow", "Reset", nullptr));
         pushButtonLoad->setText(QCoreApplication::translate("MainWindow", "Load conf", nullptr));
         pushButtonSave->setText(QCoreApplication::translate("MainWindow", "Save conf", nullptr));
+        pushButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
     } // retranslateUi
 
 };
