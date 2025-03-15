@@ -1,0 +1,10 @@
+release/ModelARX.o
+release/PetlaSprzezeniaZwrotnego.o
+release/ProstyUAR.o
+release/RegulatorPID.o
+release/Testy_ARX.o
+release/Testy_PID.o
+release/Testy_UAR.o
+release/main.o
+release/mainwindow.o
+release/moc_mainwindow.o
