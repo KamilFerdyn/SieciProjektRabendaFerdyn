@@ -368,9 +368,9 @@ border-radius: 5px;
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="pushButtonUruchomARX">
          <property name="text">
-          <string>PushButton</string>
+          <string>ARX</string>
          </property>
         </widget>
        </item>
@@ -385,7 +385,7 @@ border-radius: 5px;
      <x>0</x>
      <y>0</y>
      <width>1065</width>
-     <height>21</height>
+     <height>37</height>
     </rect>
    </property>
   </widget>

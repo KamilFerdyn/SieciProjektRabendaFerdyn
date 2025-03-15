@@ -75,7 +75,7 @@ public:
     QPushButton *pushButtonReset;
     QPushButton *pushButtonLoad;
     QPushButton *pushButtonSave;
-    QPushButton *pushButton;
+    QPushButton *pushButtonUruchomARX;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -315,10 +315,10 @@ public:
 
         gridLayout_5->addWidget(pushButtonSave, 1, 0, 1, 1);
 
-        pushButton = new QPushButton(layoutWidget);
-        pushButton->setObjectName("pushButton");
+        pushButtonUruchomARX = new QPushButton(layoutWidget);
+        pushButtonUruchomARX->setObjectName("pushButtonUruchomARX");
 
-        gridLayout_5->addWidget(pushButton, 2, 0, 1, 1);
+        gridLayout_5->addWidget(pushButtonUruchomARX, 2, 0, 1, 1);
 
 
         verticalLayout->addLayout(gridLayout_5);
@@ -326,7 +326,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1065, 21));
+        menubar->setGeometry(QRect(0, 0, 1065, 37));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -364,7 +364,7 @@ public:
         pushButtonReset->setText(QCoreApplication::translate("MainWindow", "Reset", nullptr));
         pushButtonLoad->setText(QCoreApplication::translate("MainWindow", "Load conf", nullptr));
         pushButtonSave->setText(QCoreApplication::translate("MainWindow", "Save conf", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "PushButton", nullptr));
+        pushButtonUruchomARX->setText(QCoreApplication::translate("MainWindow", "ARX", nullptr));
     } // retranslateUi
 
 };

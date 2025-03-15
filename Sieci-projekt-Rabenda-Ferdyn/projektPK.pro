@@ -14,6 +14,7 @@ SOURCES += \
     Testy_ARX.cpp \
     Testy_PID.cpp \
     Testy_UAR.cpp \
+    arxokno.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -22,10 +23,12 @@ HEADERS += \
     ModelARX.h \
     ProstyUAR.h \
     RegulatorPID.h \
+    arxokno.h \
     mainwindow.h
 
 # Pliki UI
 FORMS += \
+    arxokno.ui \
     mainwindow.ui
 
 # Domyślne reguły instalacji

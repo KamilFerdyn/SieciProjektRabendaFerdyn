@@ -63,6 +63,8 @@ private slots:
 
     void on_pushButtonSave_clicked();
 
+    void on_pushButtonUruchomARX_clicked();
+
 private:
     void resetDefaultValues();
     void resetChart();

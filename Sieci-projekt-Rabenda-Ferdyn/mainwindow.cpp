@@ -7,6 +7,8 @@
 #include <QChartView>
 #include <QFileDialog>
 #include <QMessageBox>
+#include "arxokno.h"
+
 
 // skok jednostkowy param: wartość
 // sygnal prostokatny param: wartość, czas
@@ -646,4 +648,19 @@ void MainWindow::on_pushButtonSave_clicked() {
 }
 
 
+
+
+void MainWindow::on_pushButtonUruchomARX_clicked()
+{
+    ARXokno oknoARX(this);
+    if(oknoARX.exec() == QDialog::Accepted) {
+        QStringList aList = oknoARX.getA();
+        QStringList bList = oknoARX.getB();
+        int opóźnienie = oknoARX.getOpóźnienie();
+
+        ui->lineEditA->setText(aList.join(";"));
+        ui->lineEditB->setText(bList.join(";"));
+        ui->spinBoxK->setValue(opóźnienie);
+    }
+}
 
