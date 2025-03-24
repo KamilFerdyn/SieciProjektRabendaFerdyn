@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     chart = new QChart;
     outSeries = new QLineSeries();
-    outSeries->setName("Sygnał wyjściowy");
+    outSeries->setName("Wartość regulowana");
     inSeries = new QLineSeries();
     inSeries->setName("Wartość zadana");
 
@@ -679,12 +679,6 @@ void MainWindow::on_pushButtonARX_clicked()
 
         //double noise = ui->doubleSpinBoxNoise->value();
 
-        // 🚀 Usuń stary obiekt ARX i stwórz nowy
-       // delete arx;
-       // arx = new ModelARX(a, b, opóźnienie, noise);
-
-        // 🚀 Odśwież wykresy
-        //resetChart();
     }
 }
 
