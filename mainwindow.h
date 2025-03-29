@@ -2,12 +2,12 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTimer>
 #include <QtCharts/QLineSeries>
 #include <QtCharts/QValueAxis>
-#include <QTimer>
 #include "ModelARX.h"
-#include "RegulatorPID.h"
 #include "ProstyUAR.h"
+#include "RegulatorPID.h"
 #include "arxokno.h"
 
 class QChartView;
@@ -42,13 +42,13 @@ private slots:
 
     void on_pushButtonStop_clicked();
 
-    void on_doubleSpinBoxP_valueChanged(double arg1);
+  //  void on_doubleSpinBoxP_valueChanged(double arg1);
 
-    void on_doubleSpinBoxI_valueChanged(double arg1);
+  //  void on_doubleSpinBoxI_valueChanged(double arg1);
 
-    void on_doubleSpinBoxD_valueChanged(double arg1);
+ //   void on_doubleSpinBoxD_valueChanged(double arg1);
 
-    void on_doubleSpinBoxNoise_valueChanged(double arg1);
+  //  void on_doubleSpinBoxNoise_valueChanged(double arg1);
 
     void on_spinBoxK_valueChanged(int arg1);
 
@@ -56,7 +56,7 @@ private slots:
 
     void on_lineEditB_editingFinished();
 
-    void on_doubleSpinBoxValue_valueChanged(double arg1);
+   // void on_doubleSpinBoxValue_valueChanged(double arg1);
 
     void on_spinBoxInterval_editingFinished();
 
@@ -66,6 +66,16 @@ private slots:
 
     void on_pushButtonARX_clicked();
 
+    void on_doubleSpinBoxP_editingFinished();
+
+    void on_doubleSpinBoxI_editingFinished();
+
+    void on_doubleSpinBoxD_editingFinished();
+
+    void on_doubleSpinBoxValue_editingFinished();
+
+    void on_doubleSpinBoxNoise_editingFinished();
+
 private:
     void resetDefaultValues();
     void resetChart();
@@ -73,32 +83,32 @@ private:
     void updateSettings();
 
     Ui::MainWindow *ui = nullptr;
-    QTimer* timer = nullptr;
-    QChartView* chartView = nullptr;
-    QChart* chart = nullptr;
-    QChartView* chartViewError = nullptr;
-    QChart* chartError = nullptr;
-    QChartView* chartPIDView = nullptr;
-    QChart* chartPID = nullptr;
-    QChartView* chartSterowanieView = nullptr;
-    QChart* chartSterowanie = nullptr;
+    QTimer *timer = nullptr;
+    QChartView *chartView = nullptr;
+    QChart *chart = nullptr;
+    QChartView *chartViewError = nullptr;
+    QChart *chartError = nullptr;
+    QChartView *chartPIDView = nullptr;
+    QChart *chartPID = nullptr;
+    QChartView *chartSterowanieView = nullptr;
+    QChart *chartSterowanie = nullptr;
 
-    ModelARX* arx = nullptr;
-    RegulatorPID* pid = nullptr;
-    ProstyUAR* uar = nullptr;
+    ModelARX *arx = nullptr;
+    RegulatorPID *pid = nullptr;
+    ProstyUAR *uar = nullptr;
 
     std::vector<double> sygWe;
     std::vector<double> faktSygWy;
     //unsigned long long int numerProbki = 0;
-    QLineSeries* outSeries = nullptr;
-    QLineSeries* inSeries = nullptr;
-    QLineSeries* errSeries = nullptr;
+    QLineSeries *outSeries = nullptr;
+    QLineSeries *inSeries = nullptr;
+    QLineSeries *errSeries = nullptr;
 
-    QLineSeries* pSeries = nullptr;
-    QLineSeries* iSeries = nullptr;
-    QLineSeries* dSeries = nullptr;
+    QLineSeries *pSeries = nullptr;
+    QLineSeries *iSeries = nullptr;
+    QLineSeries *dSeries = nullptr;
 
-    QLineSeries* sterowanieSeries = nullptr;
+    QLineSeries *sterowanieSeries = nullptr;
 
     double time = 0;
 

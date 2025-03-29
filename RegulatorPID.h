@@ -18,7 +18,9 @@ private:
 
 public:
     RegulatorPID(double wP, double wC = 0.0, double wR = 0.0);
-    double obliczanieSygnalySterujacego(double wartoscZadana, double wartoscRzeczywistaProcesu, double roznicaCzasu);
+    double obliczanieSygnalySterujacego(double wartoscZadana,
+                                        double wartoscRzeczywistaProcesu,
+                                        double roznicaCzasu);
     void zmianaNastawRegulator(double wP, double wC, double wR);
     void resetowaniePamieciRegulatora();
     double symuluj(double wartoscWe);
@@ -32,7 +34,6 @@ public:
     double czlonD() const { return d; }
 
     double wartoscPID() const { return p + i + d; }
-
 };
 
-#endif 
+#endif

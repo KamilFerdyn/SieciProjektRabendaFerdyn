@@ -74,14 +74,20 @@ public:
         buttonBox = new QDialogButtonBox(ARXokno);
         buttonBox->setObjectName("buttonBox");
         buttonBox->setOrientation(Qt::Orientation::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok);
+        buttonBox->setStandardButtons(QDialogButtonBox::StandardButton::Cancel
+                                      | QDialogButtonBox::StandardButton::Ok);
 
         gridLayout->addWidget(buttonBox, 3, 0, 1, 2);
 
-
         retranslateUi(ARXokno);
-        QObject::connect(buttonBox, &QDialogButtonBox::accepted, ARXokno, qOverload<>(&QDialog::accept));
-        QObject::connect(buttonBox, &QDialogButtonBox::rejected, ARXokno, qOverload<>(&QDialog::reject));
+        QObject::connect(buttonBox,
+                         &QDialogButtonBox::accepted,
+                         ARXokno,
+                         qOverload<>(&QDialog::accept));
+        QObject::connect(buttonBox,
+                         &QDialogButtonBox::rejected,
+                         ARXokno,
+                         qOverload<>(&QDialog::reject));
 
         QMetaObject::connectSlotsByName(ARXokno);
     } // setupUi
@@ -93,11 +99,11 @@ public:
         label_2->setText(QCoreApplication::translate("ARXokno", "b", nullptr));
         label_3->setText(QCoreApplication::translate("ARXokno", "opo\305\272nienie", nullptr));
     } // retranslateUi
-
 };
 
 namespace Ui {
-    class ARXokno: public Ui_ARXokno {};
+class ARXokno : public Ui_ARXokno
+{};
 } // namespace Ui
 
 QT_END_NAMESPACE

@@ -93,30 +93,30 @@ public:
         chartWidget->setGeometry(QRect(20, 10, 691, 461));
         chartWidget->setAutoFillBackground(false);
         chartWidget->setStyleSheet(QString::fromUtf8("border: 2px solid black;\n"
-"border-radius: 5px;\n"
-""));
+                                                     "border-radius: 5px;\n"
+                                                     ""));
         widgetPID = new QWidget(centralwidget);
         widgetPID->setObjectName("widgetPID");
         widgetPID->setGeometry(QRect(380, 480, 321, 261));
         widgetPID->setAutoFillBackground(false);
         widgetPID->setStyleSheet(QString::fromUtf8("border: 2px solid black;\n"
-"border-radius: 5px;\n"
-""));
+                                                   "border-radius: 5px;\n"
+                                                   ""));
         chartWidgetError = new QWidget(centralwidget);
         chartWidgetError->setObjectName("chartWidgetError");
         chartWidgetError->setGeometry(QRect(20, 480, 341, 261));
         chartWidgetError->setAutoFillBackground(false);
         chartWidgetError->setStyleSheet(QString::fromUtf8("border: 2px solid black;\n"
-"border-radius: 5px;\n"
-""));
+                                                          "border-radius: 5px;\n"
+                                                          ""));
         widgetWartoscSterowania = new QWidget(centralwidget);
         widgetWartoscSterowania->setObjectName("widgetWartoscSterowania");
         widgetWartoscSterowania->setGeometry(QRect(720, 480, 321, 261));
         widgetWartoscSterowania->setAutoFillBackground(false);
         widgetWartoscSterowania->setStyleSheet(QString::fromUtf8("border: 2px solid black;\n"
-"border-radius: 5px;\n"
-"\n"
-""));
+                                                                 "border-radius: 5px;\n"
+                                                                 "\n"
+                                                                 ""));
         layoutWidget = new QWidget(centralwidget);
         layoutWidget->setObjectName("layoutWidget");
         layoutWidget->setGeometry(QRect(720, 20, 331, 452));
@@ -179,7 +179,6 @@ public:
 
         gridLayout->addWidget(doubleSpinBoxSinusAmp, 2, 2, 1, 1);
 
-
         verticalLayout->addWidget(groupBoxSignal);
 
         groupBoxARX = new QGroupBox(layoutWidget);
@@ -220,7 +219,6 @@ public:
 
         gridLayout_2->addWidget(spinBoxK, 1, 2, 1, 2);
 
-
         verticalLayout->addWidget(groupBoxARX);
 
         groupBoxPID = new QGroupBox(layoutWidget);
@@ -260,7 +258,6 @@ public:
 
         gridLayout_3->addWidget(doubleSpinBoxD, 0, 5, 1, 1);
 
-
         verticalLayout->addWidget(groupBoxPID);
 
         gridLayout_4 = new QGridLayout();
@@ -287,7 +284,6 @@ public:
         doubleSpinBoxNoise->setSingleStep(0.010000000000000);
 
         gridLayout_4->addWidget(doubleSpinBoxNoise, 0, 3, 1, 1);
-
 
         verticalLayout->addLayout(gridLayout_4);
 
@@ -323,7 +319,6 @@ public:
 
         gridLayout_5->addWidget(pushButtonSave, 2, 0, 1, 1);
 
-
         verticalLayout->addLayout(gridLayout_5);
 
         MainWindow->setCentralWidget(centralwidget);
@@ -343,37 +338,45 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        groupBoxSignal->setTitle(QCoreApplication::translate("MainWindow", "Sygna\305\202 wej\305\233ciowy", nullptr));
+        groupBoxSignal->setTitle(
+            QCoreApplication::translate("MainWindow", "Sygna\305\202 wej\305\233ciowy", nullptr));
         radioButtonUnit->setText(QCoreApplication::translate("MainWindow", "jednostkowy", nullptr));
-        labelValue->setText(QCoreApplication::translate("MainWindow", "warto\305\233\304\207:", nullptr));
-        radioButtonRect->setText(QCoreApplication::translate("MainWindow", "prostok\304\205tny", nullptr));
+        labelValue->setText(
+            QCoreApplication::translate("MainWindow", "warto\305\233\304\207:", nullptr));
+        radioButtonRect->setText(
+            QCoreApplication::translate("MainWindow", "prostok\304\205tny", nullptr));
         labelTime->setText(QCoreApplication::translate("MainWindow", "czas /okres [s]:", nullptr));
-        radioButtonSinus->setText(QCoreApplication::translate("MainWindow", "sinusoidalny", nullptr));
+        radioButtonSinus->setText(
+            QCoreApplication::translate("MainWindow", "sinusoidalny", nullptr));
         labelAmplitude->setText(QCoreApplication::translate("MainWindow", "amplituda:", nullptr));
         groupBoxARX->setTitle(QCoreApplication::translate("MainWindow", "Model ARX", nullptr));
         labelA->setText(QCoreApplication::translate("MainWindow", "a:", nullptr));
         lineEditA->setText(QString());
         labelB->setText(QCoreApplication::translate("MainWindow", "b:", nullptr));
         lineEditB->setText(QString());
-        labelK->setText(QCoreApplication::translate("MainWindow", "op\303\263\305\272nienie:", nullptr));
+        labelK->setText(
+            QCoreApplication::translate("MainWindow", "op\303\263\305\272nienie:", nullptr));
         groupBoxPID->setTitle(QCoreApplication::translate("MainWindow", "Regulator PID", nullptr));
         labelI->setText(QCoreApplication::translate("MainWindow", "I:", nullptr));
         labelD->setText(QCoreApplication::translate("MainWindow", "D:", nullptr));
         labelP->setText(QCoreApplication::translate("MainWindow", "P:", nullptr));
-        labelInterval->setText(QCoreApplication::translate("MainWindow", "interwa\305\202 [ms]:", nullptr));
+        labelInterval->setText(
+            QCoreApplication::translate("MainWindow", "interwa\305\202 [ms]:", nullptr));
         labelNoise->setText(QCoreApplication::translate("MainWindow", "szum:", nullptr));
         pushButtonStart->setText(QCoreApplication::translate("MainWindow", "Start", nullptr));
         pushButtonStop->setText(QCoreApplication::translate("MainWindow", "Stop", nullptr));
         pushButtonReset->setText(QCoreApplication::translate("MainWindow", "Reset", nullptr));
-        pushButtonLoad->setText(QCoreApplication::translate("MainWindow", "Odczytaj z pliku", nullptr));
+        pushButtonLoad->setText(
+            QCoreApplication::translate("MainWindow", "Odczytaj z pliku", nullptr));
         pushButtonARX->setText(QCoreApplication::translate("MainWindow", "ARX ustawienia", nullptr));
-        pushButtonSave->setText(QCoreApplication::translate("MainWindow", "Zapisz do pliku", nullptr));
+        pushButtonSave->setText(
+            QCoreApplication::translate("MainWindow", "Zapisz do pliku", nullptr));
     } // retranslateUi
-
 };
 
 namespace Ui {
-    class MainWindow: public Ui_MainWindow {};
+class MainWindow : public Ui_MainWindow
+{};
 } // namespace Ui
 
 QT_END_NAMESPACE

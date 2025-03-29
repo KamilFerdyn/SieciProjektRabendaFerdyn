@@ -7,14 +7,16 @@ using namespace std;
 
 class ModelARX
 {
-
 public:
-    ModelARX(const std::vector<double>& argA, const std::vector<double>& argB, int argK = 1, double argZ = 0);
+    ModelARX(const std::vector<double> &argA,
+             const std::vector<double> &argB,
+             int argK = 1,
+             double argZ = 0);
     ~ModelARX();
 
     void reset();
 
-    void setParameters(const std::vector<double>& argA, const std::vector<double>& argB, int argK);
+    void setParameters(const std::vector<double> &argA, const std::vector<double> &argB, int argK);
     double symuluj(double input);
 
     double lastOutput() const;

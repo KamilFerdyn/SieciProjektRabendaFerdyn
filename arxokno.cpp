@@ -13,18 +13,18 @@ ARXokno::~ARXokno()
     delete ui;
 }
 
-
-
-
-QStringList ARXokno::getA() const {
+QStringList ARXokno::getA() const
+{
     return ui->lineEditA->text().split(";", Qt::SkipEmptyParts);
 }
 
-QStringList ARXokno::getB() const {
+QStringList ARXokno::getB() const
+{
     return ui->lineEditB->text().split(";", Qt::SkipEmptyParts);
 }
 
-int ARXokno::getOpóźnienie() const {
+int ARXokno::getOpóźnienie() const
+{
     return ui->spinBoxK->value();
 }
 

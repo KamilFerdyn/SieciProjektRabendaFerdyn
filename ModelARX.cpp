@@ -1,13 +1,15 @@
 #include "ModelARX.h"
 
-#include <vector>
 #include <cstdlib>
 #include <stdexcept>
-#include <cstdlib>
+#include <vector>
 
 using namespace std;
 
-ModelARX::ModelARX(const std::vector<double>& argA, const std::vector<double>& argB, int argK, double argZ)
+ModelARX::ModelARX(const std::vector<double> &argA,
+                   const std::vector<double> &argB,
+                   int argK,
+                   double argZ)
     : a(argA)
     , b(argB)
     , k(argK)
@@ -22,10 +24,7 @@ ModelARX::ModelARX(const std::vector<double>& argA, const std::vector<double>& a
     y.resize(k, 0.0);
 }
 
-ModelARX::~ModelARX()
-{
-
-}
+ModelARX::~ModelARX() {}
 
 void ModelARX::reset()
 {
@@ -40,20 +39,16 @@ double ModelARX::symuluj(double input)
 
     double output = 0.0;
 
-    for (size_t i = 0; i < a.size(); ++i)
-    {
-        if (y.size() - 1 - i >= 0)
-        {
+    for (size_t i = 0; i < a.size(); ++i) {
+        if (y.size() - 1 - i >= 0) {
             output -= a[i] * y[y.size() - 1 - i];
         }
     }
 
-    for (size_t i = 0; i < b.size(); ++i)
-    {
-        if (u.size() - 1 - k >= 0)
-        {
+    for (size_t i = 0; i < b.size(); ++i) {
+        if (u.size() - 1 - k >= 0) {
             double sign = rand() % 2 == 0 ? 1 : -1;
-            double noise = sign * z * (float)rand() / RAND_MAX;
+            double noise = sign * z * (float) rand() / RAND_MAX;
             output += b[i] * u[u.size() - 1 - k] + noise;
         }
     }
@@ -70,7 +65,9 @@ double ModelARX::lastOutput() const
     return last;
 }
 
-void ModelARX::setParameters(const std::vector<double>& argA, const std::vector<double>& argB, int argK)
+void ModelARX::setParameters(const std::vector<double> &argA,
+                             const std::vector<double> &argB,
+                             int argK)
 {
     a = argA;
     b = argB;

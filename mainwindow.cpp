@@ -1,12 +1,12 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include <vector>
-#include <QLineSeries>
-#include <QGridLayout>
 #include <QChart>
 #include <QChartView>
 #include <QFileDialog>
+#include <QGridLayout>
+#include <QLineSeries>
 #include <QMessageBox>
+#include "ui_mainwindow.h"
+#include <vector>
 
 // skok jednostkowy param: wartość
 // sygnal prostokatny param: wartość, czas
@@ -78,7 +78,6 @@ MainWindow::MainWindow(QWidget *parent)
     chartViewError->setGeometry(ui->chartWidgetError->rect());
     chartViewError->setRenderHint(QPainter::Antialiasing);
 
-
     // wykres PID
 
     chartPID = new QChart;
@@ -112,7 +111,9 @@ MainWindow::MainWindow(QWidget *parent)
     chartSterowanie->addSeries(sterowanieSeries);
     chartSterowanie->createDefaultAxes();
 
-    chartSterowanie->axes(Qt::Vertical).first()->setRange(vChartSterowanieMinRange, vChartSterowanieMaxRange);
+    chartSterowanie->axes(Qt::Vertical)
+        .first()
+        ->setRange(vChartSterowanieMinRange, vChartSterowanieMaxRange);
     chartSterowanie->axes(Qt::Vertical).first()->setTitleText("Wartosc");
     chartSterowanie->axes(Qt::Horizontal).first()->setRange(0, withXAxis);
     chartSterowanie->axes(Qt::Horizontal).first()->setTitleText("Czas");
@@ -142,32 +143,27 @@ void MainWindow::updateChart()
     time += ui->spinBoxInterval->value() / 1000.0;
     qDebug() << "TIME: " << time;
 
-    if(ui->radioButtonUnit->isChecked())
-    {
+    if (ui->radioButtonUnit->isChecked()) {
         //qDebug() << "Unit";
         // if(numerProbki != 0)
         {
             input = ui->doubleSpinBoxValue->value();
         }
-    }
-    else if(ui->radioButtonRect->isChecked())
-    {
+    } else if (ui->radioButtonRect->isChecked()) {
         qDebug() << "RECT SIGNAL";
 
         //if(/*numerProbki != 0 && */time < ui->doubleSpinBoxTime->value() )
         {
             unsigned long long okres = ui->doubleSpinBoxTime->value();
-            bool yes = (unsigned long long)time % okres < 0.5 * okres;
+            bool yes = (unsigned long long) time % okres < 0.5 * okres;
             input = yes ? ui->doubleSpinBoxValue->value() : 0;
         }
-    }
-    else if(ui->radioButtonSinus->isChecked())
-    {
+    } else if (ui->radioButtonSinus->isChecked()) {
         qDebug() << "Sinus";
 
         //if(n != 0)
         {
-            double x = (double)(2 * M_PI * time) / ui->doubleSpinBoxTime->value();
+            double x = (double) (2 * M_PI * time) / ui->doubleSpinBoxTime->value();
             input = ui->doubleSpinBoxValue->value() + ui->doubleSpinBoxSinusAmp->value() * sin(x);
         }
     }
@@ -175,96 +171,85 @@ void MainWindow::updateChart()
     double output = uar->symuluj(input);
 
     // skalowanie w pionie wykres 1
-    if(output > vChartMaxRange - 0.1)
-    {
+    if (output > vChartMaxRange - 0.1) {
         vChartMaxRange = output + 0.1;
         chart->axes(Qt::Vertical).first()->setRange(vChartMinRange, vChartMaxRange);
     }
 
-    if(output < vChartMinRange + 0.1)
-    {
+    if (output < vChartMinRange + 0.1) {
         vChartMinRange = output - 0.1;
         chart->axes(Qt::Vertical).first()->setRange(vChartMinRange, vChartMaxRange);
     }
 
-    if(input > vChartMaxRange - 0.1)
-    {
+    if (input > vChartMaxRange - 0.1) {
         vChartMaxRange = input + 0.1;
         chart->axes(Qt::Vertical).first()->setRange(vChartMinRange, vChartMaxRange);
     }
 
-    if(input < vChartMinRange + 0.1)
-    {
+    if (input < vChartMinRange + 0.1) {
         vChartMinRange = input - 0.1;
         chart->axes(Qt::Vertical).first()->setRange(vChartMinRange, vChartMaxRange);
     }
 
     // skalowanie wykres error
 
-    if(fabs(input - output) > vChartErrorMaxRange - 0.1)
-    {
+    if (fabs(input - output) > vChartErrorMaxRange - 0.1) {
         vChartErrorMaxRange = fabs(input - output) + 0.1;
         chartError->axes(Qt::Vertical).first()->setRange(vChartErrorMinRange, vChartErrorMaxRange);
     }
 
-    if(fabs(input - output) < vChartErrorMinRange + 0.1)
-    {
+    if (fabs(input - output) < vChartErrorMinRange + 0.1) {
         vChartErrorMinRange = fabs(input - output) - 0.1;
         chartError->axes(Qt::Vertical).first()->setRange(vChartErrorMinRange, vChartErrorMaxRange);
     }
 
     // skalowanie w pionie wykres PID
 
-    if(pid->czlonP() > vChartPIDMaxRange - 0.1)
-    {
+    if (pid->czlonP() > vChartPIDMaxRange - 0.1) {
         vChartPIDMaxRange = pid->czlonP() + 0.1;
         chartPID->axes(Qt::Vertical).first()->setRange(vChartPIDMinRange, vChartPIDMaxRange);
     }
 
-    if(pid->czlonP() < vChartPIDMinRange + 0.1)
-    {
+    if (pid->czlonP() < vChartPIDMinRange + 0.1) {
         vChartPIDMinRange = pid->czlonP() - 0.1;
         chartPID->axes(Qt::Vertical).first()->setRange(vChartPIDMinRange, vChartPIDMaxRange);
     }
 
-    if(pid->czlonI() > vChartPIDMaxRange - 0.1)
-    {
+    if (pid->czlonI() > vChartPIDMaxRange - 0.1) {
         vChartPIDMaxRange = pid->czlonI() + 0.1;
         chartPID->axes(Qt::Vertical).first()->setRange(vChartPIDMinRange, vChartPIDMaxRange);
     }
 
-    if(pid->czlonI() < vChartPIDMinRange + 0.1)
-    {
+    if (pid->czlonI() < vChartPIDMinRange + 0.1) {
         vChartPIDMinRange = pid->czlonI() - 0.1;
         chartPID->axes(Qt::Vertical).first()->setRange(vChartPIDMinRange, vChartPIDMaxRange);
     }
 
-    if(pid->czlonD() > vChartPIDMaxRange - 0.1)
-    {
+    if (pid->czlonD() > vChartPIDMaxRange - 0.1) {
         vChartPIDMaxRange = pid->czlonD() + 0.1;
         chartPID->axes(Qt::Vertical).first()->setRange(vChartPIDMinRange, vChartPIDMaxRange);
     }
 
-    if(pid->czlonD() < vChartPIDMinRange + 0.1)
-    {
+    if (pid->czlonD() < vChartPIDMinRange + 0.1) {
         vChartPIDMinRange = pid->czlonD() - 0.1;
         chartPID->axes(Qt::Vertical).first()->setRange(vChartPIDMinRange, vChartPIDMaxRange);
     }
 
     // skalowanie wykres sterowanie
 
-    if(pid->wartoscPID() > vChartSterowanieMaxRange - 0.1)
-    {
+    if (pid->wartoscPID() > vChartSterowanieMaxRange - 0.1) {
         vChartSterowanieMaxRange = pid->wartoscPID() + 0.1;
-        chartSterowanie->axes(Qt::Vertical).first()->setRange(vChartSterowanieMinRange, vChartSterowanieMaxRange);
+        chartSterowanie->axes(Qt::Vertical)
+            .first()
+            ->setRange(vChartSterowanieMinRange, vChartSterowanieMaxRange);
     }
 
-    if(pid->wartoscPID() < vChartSterowanieMinRange + 0.1)
-    {
+    if (pid->wartoscPID() < vChartSterowanieMinRange + 0.1) {
         vChartSterowanieMinRange = pid->wartoscPID() - 0.1;
-        chartSterowanie->axes(Qt::Vertical).first()->setRange(vChartSterowanieMinRange, vChartSterowanieMaxRange);
+        chartSterowanie->axes(Qt::Vertical)
+            .first()
+            ->setRange(vChartSterowanieMinRange, vChartSterowanieMaxRange);
     }
-
 
     pSeries->append(time, pid->czlonP());
     iSeries->append(time, pid->czlonI());
@@ -277,8 +262,7 @@ void MainWindow::updateChart()
     outSeries->append(time, output);
     // numerProbki++;
 
-    if(time > withXAxis)
-    {
+    if (time > withXAxis) {
         //double t = (n * ui->spinBoxInterval->value()) / 1000;
         double t = time;
         chart->axes(Qt::Horizontal).first()->setRange(t - withXAxis, t);
@@ -288,7 +272,6 @@ void MainWindow::updateChart()
     }
 }
 
-
 void MainWindow::on_pushButtonStart_clicked()
 {
     sygWe.push_back(1);
@@ -297,8 +280,6 @@ void MainWindow::on_pushButtonStart_clicked()
 
     timer->start();
 }
-
-
 
 void MainWindow::resetDefaultValues()
 {
@@ -343,9 +324,15 @@ void MainWindow::resetChart()
     vChartSterowanieMaxRange = vChartSterowanieMaxRangeDefault;
 
     chart->axes(Qt::Vertical).first()->setRange(vChartMinRangeDefault, vChartMaxRangeDefault);
-    chartError->axes(Qt::Vertical).first()->setRange(vChartErrorMinRangeDefault, vChartErrorMaxRangeDefault);
-    chartPID->axes(Qt::Vertical).first()->setRange(vChartPIDMinRangeDefault, vChartPIDMaxRangeDefault);
-    chartSterowanie->axes(Qt::Vertical).first()->setRange(vChartSterowanieMinRangeDefault, vChartSterowanieMaxRangeDefault);
+    chartError->axes(Qt::Vertical)
+        .first()
+        ->setRange(vChartErrorMinRangeDefault, vChartErrorMaxRangeDefault);
+    chartPID->axes(Qt::Vertical)
+        .first()
+        ->setRange(vChartPIDMinRangeDefault, vChartPIDMaxRangeDefault);
+    chartSterowanie->axes(Qt::Vertical)
+        .first()
+        ->setRange(vChartSterowanieMinRangeDefault, vChartSterowanieMaxRangeDefault);
 
     chart->axes(Qt::Horizontal).first()->setRange(0, withXAxis);
     chartError->axes(Qt::Horizontal).first()->setRange(0, withXAxis);
@@ -363,11 +350,10 @@ void MainWindow::resetAllSettings()
 
     QStringList aStr = ui->lineEditA->text().split(";");
     std::vector<double> a;
-    for(const QString& str : aStr)
-    {
+    for (const QString &str : aStr) {
         bool ok = false;
         double value = str.toDouble(&ok);
-        if(ok)
+        if (ok)
             a.push_back(value);
     }
 
@@ -375,11 +361,10 @@ void MainWindow::resetAllSettings()
 
     QStringList bStr = ui->lineEditB->text().split(";");
     std::vector<double> b;
-    for(const QString& str : bStr)
-    {
+    for (const QString &str : bStr) {
         bool ok = false;
         double value = str.toDouble(&ok);
-        if(ok)
+        if (ok)
             b.push_back(value);
     }
 
@@ -404,23 +389,20 @@ void MainWindow::resetAllSettings()
 
 void MainWindow::updateSettings()
 {
-    if(pid)
-    {
+    if (pid) {
         qDebug() << "Update PID Settings";
         pid->ustawP(ui->doubleSpinBoxP->value());
         pid->ustawI(ui->doubleSpinBoxI->value());
         pid->ustawD(ui->doubleSpinBoxD->value());
     }
 
-    if(arx)
-    {
+    if (arx) {
         QStringList aStr = ui->lineEditA->text().split(";");
         std::vector<double> a;
-        for(const QString& str : aStr)
-        {
+        for (const QString &str : aStr) {
             bool ok = false;
             double value = str.toDouble(&ok);
-            if(ok)
+            if (ok)
                 a.push_back(value);
         }
 
@@ -428,11 +410,10 @@ void MainWindow::updateSettings()
 
         QStringList bStr = ui->lineEditB->text().split(";");
         std::vector<double> b;
-        for(const QString& str : bStr)
-        {
+        for (const QString &str : bStr) {
             bool ok = false;
             double value = str.toDouble(&ok);
-            if(ok)
+            if (ok)
                 b.push_back(value);
         }
 
@@ -448,7 +429,6 @@ void MainWindow::on_pushButtonReset_clicked()
     resetDefaultValues();
     resetAllSettings();
 }
-
 
 void MainWindow::on_pushButtonStop_clicked()
 {
@@ -468,33 +448,29 @@ void MainWindow::on_pushButtonStop_clicked()
 }
 
 
-void MainWindow::on_doubleSpinBoxP_valueChanged(double arg1)
-{
-    qDebug() << __FUNCTION__;
-    updateSettings();
-}
+// void MainWindow::on_doubleSpinBoxP_valueChanged(double arg1)
+// {
+//     qDebug() << __FUNCTION__;
+//     updateSettings();
+// }
 
+// void MainWindow::on_doubleSpinBoxI_valueChanged(double arg1)
+// {
+//     qDebug() << __FUNCTION__;
+//     updateSettings();
+// }
 
-void MainWindow::on_doubleSpinBoxI_valueChanged(double arg1)
-{
-    qDebug() << __FUNCTION__;
-    updateSettings();
-}
+// void MainWindow::on_doubleSpinBoxD_valueChanged(double arg1)
+// {
+//     qDebug() << __FUNCTION__;
+//     updateSettings();
+// }
 
-
-void MainWindow::on_doubleSpinBoxD_valueChanged(double arg1)
-{
-    qDebug() << __FUNCTION__;
-    updateSettings();
-}
-
-
-void MainWindow::on_doubleSpinBoxNoise_valueChanged(double arg1)
-{
-    qDebug() << __FUNCTION__;
-    updateSettings();
-}
-
+// void MainWindow::on_doubleSpinBoxNoise_valueChanged(double arg1)
+// {
+//     qDebug() << __FUNCTION__;
+//     updateSettings();
+// }
 
 void MainWindow::on_spinBoxK_valueChanged(int arg1)
 {
@@ -502,13 +478,11 @@ void MainWindow::on_spinBoxK_valueChanged(int arg1)
     updateSettings();
 }
 
-
 void MainWindow::on_lineEditA_editingFinished()
 {
     qDebug() << __FUNCTION__;
     updateSettings();
 }
-
 
 void MainWindow::on_lineEditB_editingFinished()
 {
@@ -516,12 +490,11 @@ void MainWindow::on_lineEditB_editingFinished()
     updateSettings();
 }
 
-
-void MainWindow::on_doubleSpinBoxValue_valueChanged(double arg1)
-{
-    qDebug() << __FUNCTION__;
-    updateSettings();
-}
+// void MainWindow::on_doubleSpinBoxValue_valueChanged(double arg1)
+// {
+//     qDebug() << __FUNCTION__;
+//     updateSettings();
+// }
 
 /*
 void MainWindow::on_spinBoxInterval_editingFinished()
@@ -542,7 +515,7 @@ void MainWindow::on_spinBoxInterval_editingFinished()
     int newInterval = ui->spinBoxInterval->value();
 
     // Zapewnienie, że interwał nie będzie mniejszy niż 500 ms
-   // if (newInterval < 500) newInterval = 500;
+    // if (newInterval < 500) newInterval = 500;
 
     ui->spinBoxInterval->setValue(newInterval); // Aktualizacja wartości w interfejsie
     timer->setInterval(newInterval);
@@ -551,9 +524,15 @@ void MainWindow::on_spinBoxInterval_editingFinished()
     updateSettings();
 }
 
-void MainWindow::on_pushButtonLoad_clicked() {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Wczytaj konfiguracje"), "", tr("Pliki binarne (*.bin);;Wszystkie pliki (*)"));
-    if (fileName.isEmpty()) return;
+void MainWindow::on_pushButtonLoad_clicked()
+{
+    QString fileName
+        = QFileDialog::getOpenFileName(this,
+                                       tr("Wczytaj konfiguracje"),
+                                       "",
+                                       tr("Pliki binarne (*.bin);;Wszystkie pliki (*)"));
+    if (fileName.isEmpty())
+        return;
 
     QFile file(fileName);
     if (!file.open(QIODevice::ReadOnly)) {
@@ -600,9 +579,15 @@ void MainWindow::on_pushButtonLoad_clicked() {
     file.close();
     QMessageBox::information(this, tr("Sukces"), tr("Konfiguracja zostala wczytana."));
 }
-void MainWindow::on_pushButtonSave_clicked() {
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Zapisz konfiguracje"), "", tr("Pliki binarne (*.bin);;Wszystkie pliki (*)"));
-    if (fileName.isEmpty()) return;
+void MainWindow::on_pushButtonSave_clicked()
+{
+    QString fileName
+        = QFileDialog::getSaveFileName(this,
+                                       tr("Zapisz konfiguracje"),
+                                       "",
+                                       tr("Pliki binarne (*.bin);;Wszystkie pliki (*)"));
+    if (fileName.isEmpty())
+        return;
 
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly)) {
@@ -645,11 +630,10 @@ void MainWindow::on_pushButtonSave_clicked() {
     QMessageBox::information(this, tr("Sukces"), tr("Konfiguracja zostala zapisana."));
 }
 
-
 void MainWindow::on_pushButtonARX_clicked()
 {
     ARXokno oknoARX(this);
-    if(oknoARX.exec() == QDialog::Accepted) {
+    if (oknoARX.exec() == QDialog::Accepted) {
         QStringList aList = oknoARX.getA();
         QStringList bList = oknoARX.getB();
         int opóźnienie = oknoARX.getOpóźnienie();
@@ -660,16 +644,18 @@ void MainWindow::on_pushButtonARX_clicked()
 
         // 🚀 Aktualizacja modelu ARX
         std::vector<double> a, b;
-        for(const QString& str : aList) {
+        for (const QString &str : aList) {
             bool ok;
             double value = str.toDouble(&ok);
-            if(ok) a.push_back(value);
+            if (ok)
+                a.push_back(value);
         }
 
-        for(const QString& str : bList) {
+        for (const QString &str : bList) {
             bool ok;
             double value = str.toDouble(&ok);
-            if(ok) b.push_back(value);
+            if (ok)
+                b.push_back(value);
         }
 
         arx->ustawA(a);
@@ -678,7 +664,47 @@ void MainWindow::on_pushButtonARX_clicked()
         arx->ustawZ(ui->doubleSpinBoxNoise->value());
 
         //double noise = ui->doubleSpinBoxNoise->value();
-
     }
+}
+
+void MainWindow::on_doubleSpinBoxP_editingFinished()
+{
+    qDebug() << __FUNCTION__;
+    updateSettings();
+}
+
+
+void MainWindow::on_doubleSpinBoxValue_editingFinished()
+{
+    qDebug() << __FUNCTION__;
+    updateSettings();
+
+}
+
+
+void MainWindow::on_doubleSpinBoxI_editingFinished()
+{
+    qDebug() << __FUNCTION__;
+    updateSettings();
+}
+
+
+void MainWindow::on_doubleSpinBoxD_editingFinished()
+{
+    qDebug() << __FUNCTION__;
+    updateSettings();
+}
+
+
+void MainWindow::on_doubleSpinBoxNoise_editingFinished()
+{
+    qDebug() << __FUNCTION__;
+    updateSettings();
+}
+
+
+void MainWindow::on_doubleSpinBoxTime_editingFinished()
+{
+
 }
 
