@@ -140,7 +140,7 @@ void MainWindow::updateChart()
 
     double input = 0;
 
-    time += ui->spinBoxInterval->value() / 1000.0;
+    time += newInterval / 1000.0;
     qDebug() << "TIME: " << time;
 
     if (ui->radioButtonUnit->isChecked()) {
@@ -276,7 +276,7 @@ void MainWindow::on_pushButtonStart_clicked()
 {
     sygWe.push_back(1);
 
-    timer->setInterval(ui->spinBoxInterval->value());
+    timer->setInterval(newInterval);
 
     timer->start();
 }
@@ -447,7 +447,6 @@ void MainWindow::on_pushButtonStop_clicked()
     */
 }
 
-
 // void MainWindow::on_doubleSpinBoxP_valueChanged(double arg1)
 // {
 //     qDebug() << __FUNCTION__;
@@ -512,7 +511,7 @@ void MainWindow::on_spinBoxInterval_editingFinished()
 {
     timer->stop();
 
-    int newInterval = ui->spinBoxInterval->value();
+    newInterval = ui->spinBoxInterval->value();
 
     // Zapewnienie, że interwał nie będzie mniejszy niż 500 ms
     // if (newInterval < 500) newInterval = 500;
@@ -601,7 +600,7 @@ void MainWindow::on_pushButtonSave_clicked()
     double p = ui->doubleSpinBoxP->value();
     double i = ui->doubleSpinBoxI->value();
     double d = ui->doubleSpinBoxD->value();
-    int interval = ui->spinBoxInterval->value();
+    int interval = newInterval;
     double noise = ui->doubleSpinBoxNoise->value();
 
     int signalType = 0;
@@ -673,14 +672,11 @@ void MainWindow::on_doubleSpinBoxP_editingFinished()
     updateSettings();
 }
 
-
 void MainWindow::on_doubleSpinBoxValue_editingFinished()
 {
     qDebug() << __FUNCTION__;
     updateSettings();
-
 }
-
 
 void MainWindow::on_doubleSpinBoxI_editingFinished()
 {
@@ -688,13 +684,11 @@ void MainWindow::on_doubleSpinBoxI_editingFinished()
     updateSettings();
 }
 
-
 void MainWindow::on_doubleSpinBoxD_editingFinished()
 {
     qDebug() << __FUNCTION__;
     updateSettings();
 }
-
 
 void MainWindow::on_doubleSpinBoxNoise_editingFinished()
 {
@@ -702,9 +696,4 @@ void MainWindow::on_doubleSpinBoxNoise_editingFinished()
     updateSettings();
 }
 
-
-void MainWindow::on_doubleSpinBoxTime_editingFinished()
-{
-
-}
-
+//void MainWindow::on_doubleSpinBoxTime_editingFinished() {}

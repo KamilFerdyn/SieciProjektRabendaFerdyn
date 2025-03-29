@@ -42,13 +42,13 @@ private slots:
 
     void on_pushButtonStop_clicked();
 
-  //  void on_doubleSpinBoxP_valueChanged(double arg1);
+    //  void on_doubleSpinBoxP_valueChanged(double arg1);
 
-  //  void on_doubleSpinBoxI_valueChanged(double arg1);
+    //  void on_doubleSpinBoxI_valueChanged(double arg1);
 
- //   void on_doubleSpinBoxD_valueChanged(double arg1);
+    //   void on_doubleSpinBoxD_valueChanged(double arg1);
 
-  //  void on_doubleSpinBoxNoise_valueChanged(double arg1);
+    //  void on_doubleSpinBoxNoise_valueChanged(double arg1);
 
     void on_spinBoxK_valueChanged(int arg1);
 
@@ -56,7 +56,7 @@ private slots:
 
     void on_lineEditB_editingFinished();
 
-   // void on_doubleSpinBoxValue_valueChanged(double arg1);
+    // void on_doubleSpinBoxValue_valueChanged(double arg1);
 
     void on_spinBoxInterval_editingFinished();
 
@@ -111,6 +111,7 @@ private:
     QLineSeries *sterowanieSeries = nullptr;
 
     double time = 0;
+    int newInterval = 800;
 
     //std::vector<double> spodzSygWy; // spodziewana sekwencja wy (tu same 0)
 };
