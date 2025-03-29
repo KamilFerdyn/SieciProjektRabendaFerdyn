@@ -147,24 +147,24 @@ void MainWindow::updateChart()
         //qDebug() << "Unit";
         // if(numerProbki != 0)
         {
-            input = ui->doubleSpinBoxValue->value();
+            input = WARTOSC;
         }
     } else if (ui->radioButtonRect->isChecked()) {
         qDebug() << "RECT SIGNAL";
 
         //if(/*numerProbki != 0 && */time < ui->doubleSpinBoxTime->value() )
         {
-            unsigned long long okres = ui->doubleSpinBoxTime->value();
+            unsigned long long okres = OKRES;
             bool yes = (unsigned long long) time % okres < 0.5 * okres;
-            input = yes ? ui->doubleSpinBoxValue->value() : 0;
+            input = yes ? WARTOSC : 0;
         }
     } else if (ui->radioButtonSinus->isChecked()) {
         qDebug() << "Sinus";
 
         //if(n != 0)
         {
-            double x = (double) (2 * M_PI * time) / ui->doubleSpinBoxTime->value();
-            input = ui->doubleSpinBoxValue->value() + ui->doubleSpinBoxSinusAmp->value() * sin(x);
+            double x = (double) (2 * M_PI * time) / OKRES;
+            input = WARTOSC + AMPLITUDA * sin(x);
         }
     }
 
@@ -608,13 +608,13 @@ void MainWindow::on_pushButtonSave_clicked()
 
     if (ui->radioButtonUnit->isChecked()) {
         signalType = 0;
-        signalValue = ui->doubleSpinBoxValue->value();
+        signalValue = WARTOSC;
     } else if (ui->radioButtonRect->isChecked()) {
         signalType = 1;
-        signalTime = ui->doubleSpinBoxTime->value();
+        signalTime = OKRES;
     } else if (ui->radioButtonSinus->isChecked()) {
         signalType = 2;
-        signalAmp = ui->doubleSpinBoxSinusAmp->value();
+        signalAmp = AMPLITUDA;
     }
 
     QStringList aList = ui->lineEditA->text().split(";");
@@ -672,12 +672,6 @@ void MainWindow::on_doubleSpinBoxP_editingFinished()
     updateSettings();
 }
 
-void MainWindow::on_doubleSpinBoxValue_editingFinished()
-{
-    qDebug() << __FUNCTION__;
-    updateSettings();
-}
-
 void MainWindow::on_doubleSpinBoxI_editingFinished()
 {
     qDebug() << __FUNCTION__;
@@ -696,4 +690,27 @@ void MainWindow::on_doubleSpinBoxNoise_editingFinished()
     updateSettings();
 }
 
-//void MainWindow::on_doubleSpinBoxTime_editingFinished() {}
+
+
+void MainWindow::on_doubleSpinBoxValue_editingFinished()
+{
+    qDebug() << __FUNCTION__;
+    WARTOSC = ui->doubleSpinBoxValue->value();
+    updateSettings();
+}
+
+void MainWindow::on_doubleSpinBoxTime_editingFinished()
+{
+    qDebug() << __FUNCTION__;
+    OKRES = ui->doubleSpinBoxTime->value();
+    updateSettings();
+}
+
+
+void MainWindow::on_doubleSpinBoxSinusAmp_editingFinished()
+{
+    qDebug() << __FUNCTION__;
+    AMPLITUDA = ui->doubleSpinBoxSinusAmp->value();
+    updateSettings();
+}
+

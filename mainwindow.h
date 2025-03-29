@@ -76,6 +76,10 @@ private slots:
 
     void on_doubleSpinBoxNoise_editingFinished();
 
+    void on_doubleSpinBoxTime_editingFinished();
+
+    void on_doubleSpinBoxSinusAmp_editingFinished();
+
 private:
     void resetDefaultValues();
     void resetChart();
@@ -110,7 +114,7 @@ private:
 
     QLineSeries *sterowanieSeries = nullptr;
 
-    double time = 0;
+    double time = 0, WARTOSC = 2.0, OKRES = 10.0, AMPLITUDA = 1.0;
     int newInterval = 800;
 
     //std::vector<double> spodzSygWy; // spodziewana sekwencja wy (tu same 0)
