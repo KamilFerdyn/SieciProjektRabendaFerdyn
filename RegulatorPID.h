@@ -11,6 +11,7 @@ private:
     double bladPoprzedniejIteracji;
     double sumaBledowDoSkladnikaCalkujacego;
     double aktualnySygnalSterujacy;
+    bool calkaPodSuma;
 
     double p = 0;
     double i = 0;
@@ -24,6 +25,7 @@ public:
     void zmianaNastawRegulator(double wP, double wC, double wR);
     void resetowaniePamieciRegulatora();
     double symuluj(double wartoscWe);
+    void ustawCalkaPodSuma(bool nowySposob);
 
     void ustawP(double wartosc) { wspolczynnikProporcjonalny = wartosc; }
     void ustawI(double wartosc) { wspolczynnikCalkujacy = wartosc; }

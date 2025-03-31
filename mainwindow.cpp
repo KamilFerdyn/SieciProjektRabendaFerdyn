@@ -295,6 +295,11 @@ void MainWindow::resetDefaultValues()
     ui->doubleSpinBoxValue->setValue(2);
     ui->doubleSpinBoxTime->setValue(10);
     ui->doubleSpinBoxSinusAmp->setValue(1);
+    time = 0;
+    WARTOSC = 2.0;
+    OKRES = 10.0;
+    AMPLITUDA = 1.0;
+    newInterval = 800;
 }
 
 void MainWindow::resetChart()
@@ -712,5 +717,10 @@ void MainWindow::on_doubleSpinBoxSinusAmp_editingFinished()
     qDebug() << __FUNCTION__;
     AMPLITUDA = ui->doubleSpinBoxSinusAmp->value();
     updateSettings();
+}
+
+void MainWindow::on_checkBoxCalkaPodSuma_toggled(bool checked)
+{
+    pid->ustawCalkaPodSuma(checked);
 }
 

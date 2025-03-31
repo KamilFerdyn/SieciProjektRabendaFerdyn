@@ -80,6 +80,8 @@ private slots:
 
     void on_doubleSpinBoxSinusAmp_editingFinished();
 
+    void on_checkBoxCalkaPodSuma_toggled(bool checked);
+
 private:
     void resetDefaultValues();
     void resetChart();
